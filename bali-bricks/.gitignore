@@ -1,0 +1,14 @@
+# Системные файлы macOS
+.DS_Store
+Thumbs.db
+
+# Настройки редактора
+.vscode/
+.idea/
+
+# Логи и временные файлы
+*.log
+npm-debug.log*
+
+# Если в будущем появятся зависимости (Node.js)
+node_modules/
