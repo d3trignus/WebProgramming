@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="decks">
+      <p>My decks</p>
+      <div id="decks-list">
+        <select id="deck-select"></select>
+        <input type="text" id="add-deck-input" placeholder="New deck's name" />
+      </div>
+      <button id="add-deck-button">Add deck</button>
+      <button id="remove-deck-button">Remove deck</button>
+    </div>
+
+    <div id="select-mode">
+      <p>Select study mode</p>
+
+      <label>
+        <input type="radio" name="mode" value="all" checked />
+        All cards
+      </label>
+      <label>
+        <input type="radio" name="mode" value="unlearned" />
+        Only unlearned
+      </label>
+
+      <button id="shuffle-deck-button">Shuffle</button>
+    </div>
+
+    <div id="cards">
+      <!-- <p>Карточки</p> -->
+
+      <div id="card-container"></div>
+      <p id="no-cards"></p>
+      <div id="card"></div>
+      <div id="card-buttons">
+        <div id="manipulators">
+          <button id="prev-card-button">Previous</button>
+          <button id="flip-card-button">Flip</button>
+          <button id="next-card-button">Next</button>
+        </div>
+        <button id="toggle-learned-button">Toggle learned</button>
+        <p id="p-card-index"></p>
+      </div>
+    </div>
+
+    <div id="add-cards">
+      <p>Add new card</p>
+      <div id="add-card-inputs">
+        <input type="text" id="add-card-front-input" placeholder="Front side" />
+        <input type="text" id="add-card-back-input" placeholder="Back side" />
+      </div>
+      <button id="add-card-button">Add card</button>
+    </div>
+
+    <div id="cards-list">
+      <p>This deck's cards list</p>
+
+      <table id="cards-table">
+        <thead>
+          <tr>
+            <th>Front side</th>
+            <th>Back side</th>
+            <th>Learned</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+    <script src="deck-manager.js"></script>
+    <script src="renderer.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
