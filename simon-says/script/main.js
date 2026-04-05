@@ -1,4 +1,4 @@
-const logic = new Logic();
-const renderer = new Renderer(logic);
+const game = new Game();
+const renderer = new Renderer(game);
 
-renderer.renderCurrentBestScore(logic.best);
+renderer.renderCurrentBestScore(game.best);

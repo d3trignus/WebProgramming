@@ -1,6 +1,6 @@
 class Renderer {
-  constructor(logic) {
-    this.logic = logic;
+  constructor(game) {
+    this.game = game;
 
     this.startButton = document.querySelector("#start-button");
     this.giveUpButton = document.querySelector("#give-up-button");
@@ -39,14 +39,14 @@ class Renderer {
       this.startButton.disabled = true;
       this.giveUpButton.disabled = false;
 
-      this.logic.startGame(
+      this.game.startGame(
         document.querySelector("#btns-count-input").value,
         this,
       );
     });
 
     this.giveUpButton.addEventListener("click", () => {
-      this.logic.handleGiveUp(this);
+      this.gamee.handleGiveUp(this);
     });
   };
 

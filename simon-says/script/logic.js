@@ -1,4 +1,4 @@
-class Logic {
+class Game {
   constructor() {
     this.best = parseInt(localStorage.getItem("simon-says-best-score")) || 0;
     this.isGameRunning = false;
