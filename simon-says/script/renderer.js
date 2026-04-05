@@ -46,7 +46,7 @@ class Renderer {
     });
 
     this.giveUpButton.addEventListener("click", () => {
-      this.gamee.handleGiveUp(this);
+      this.game.handleGiveUp(this);
     });
   };
 
