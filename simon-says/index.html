@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  </head>
+  <body>
+    <h2 id="title">Simon Says</h2>
+
+    <div id="options">
+      <input
+        type="number"
+        id="btns-count-input"
+        placeholder="Select number of buttons"
+        min="2"
+        max="10"
+      />
+      <button id="start-button">Start game</button>
+      <button id="give-up-button" disabled>Give up</button>
+    </div>
+
+    <div id="result-message"></div>
+    <div id="current-best-score"></div>
+
+    <div id="countdown" class="hidden">
+      <h1 id="countdown-text">eshekre</h1>
+    </div>
+
+    <div id="game-container"></div>
+
+    <script src="script/logic.js"></script>
+    <script src="script/renderer.js"></script>
+    <script src="script/main.js"></script>
+  </body>
+</html>
