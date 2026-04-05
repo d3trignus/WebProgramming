@@ -155,6 +155,6 @@ class Renderer {
   };
 
   renderPreviousBestScore = (score) => {
-    this.currentBestScoreEl.innerText = `Previous best: <span>${score}</span>`;
+    this.currentBestScoreEl.innerHTML = `Previous best: <span>${score}</span>`;
   };
 }
