@@ -2,16 +2,12 @@ class Game {
   constructor(playerCount, renderer) {
     this.renderer = renderer;
     this.currentPlayerIndex = 0;
-    this.players = [];
-
-    for (let i = 0; i < playerCount; ++i) {
-      let player = {
-        name: `Player ${i + 1}`,
+    this.players = new Array(playerCount).fill(null).map((_, index) => {
+      return {
+        name: `Player ${index + 1}`,
         cards: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       };
-
-      this.players.push(player);
-    }
+    });
   }
 
   get currentPlayer() {
