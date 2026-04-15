@@ -62,13 +62,15 @@ class DeckManager {
   addDeck = (deckName) => {
     const name = deckName.trim();
 
+    renderer.addDeckErrorEl.innerHTML = "";
+
     if (name.length === 0) {
       alert("Deck name cannot be empty");
       return;
     }
 
     if (this.decks.some((deck) => deck.name === name)) {
-      alert("Deck with this name already exists");
+      renderer.renderAddDeckError();
       return;
     }
 

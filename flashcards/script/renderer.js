@@ -13,6 +13,9 @@ class Renderer {
     this.prevCardButton = document.querySelector("#prev-card-button");
 
     this.toggleLearnedButton = document.querySelector("#toggle-learned-button");
+    this.toggleLearnedCheckbox = document.querySelector(
+      "#toggle-learned-checkbox",
+    );
 
     this.selectDeck = document.querySelector("#deck-select");
     this.addDeckInput = document.querySelector("#add-deck-input");
@@ -25,6 +28,9 @@ class Renderer {
     this.tableBody = document.querySelector("#table-body");
 
     this.cardEl = document.querySelector("#card");
+
+    this.addDeckErrorEl = document.querySelector("#add-deck-error");
+    this.addCardErrorEl = document.querySelector("#add-card-error");
 
     this.initEventListeners();
   }
@@ -82,6 +88,11 @@ class Renderer {
       this.renderAll();
     });
 
+    this.toggleLearnedCheckbox.addEventListener("change", () => {
+      this.deckManager.toggleLearned();
+      this.renderAll();
+    });
+
     this.selectDeck.addEventListener("change", () => {
       this.deckManager.changeDeck(this.selectDeck.value);
       this.renderAll();
@@ -96,6 +107,7 @@ class Renderer {
   };
 
   renderAll = () => {
+    this.renderToggleLearnedCheckbox();
     this.renderDeckList();
     this.renderCurrentCard();
     this.renderMode();
@@ -134,6 +146,13 @@ class Renderer {
         button.checked = true;
       }
     });
+  };
+
+  renderToggleLearnedCheckbox = () => {
+    this.toggleLearnedCheckbox.checked = false;
+    const card = this.deckManager.currentCard;
+    if (!card) return;
+    if (card.isLearned) this.toggleLearnedCheckbox.checked = true;
   };
 
   renderCounters = () => {
@@ -215,5 +234,13 @@ class Renderer {
     this.flipCardButton.disabled = !hasCards;
     this.toggleLearnedButton.disabled = !hasCards;
     this.removeDeckButton.disabled = !hasDeck;
+  };
+
+  renderAddDeckError = () => {
+    this.addDeckErrorEl.innerHTML = "Deck with this name already exists";
+  };
+
+  renderAddCardError = () => {
+    this.addCardErrorEl.innerHTML = "";
   };
 }
