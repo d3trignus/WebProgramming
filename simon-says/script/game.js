@@ -74,7 +74,7 @@ class Game {
         return false;
       }
 
-      await renderer.flashButton(`button-${clickedIndex}`);
+      renderer.flashButton(`button-${clickedIndex}`);
     }
 
     return true;
