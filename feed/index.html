@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post Feed</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="site-label">Publications</div>
+        <h1 class="site-title">Feed</h1>
+      </header>
+
+      <div class="search-wrapper">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search posts..."
+          autocomplete="off"
+        />
+      </div>
+
+      <div id="feed"></div>
+    </div>
+
+    <script src="script/api.js"></script>
+    <script src="script/renderer.js"></script>
+    <script src="script/main.js"></script>
+  </body>
+</html>

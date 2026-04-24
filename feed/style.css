@@ -1,0 +1,356 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap");
+
+/* ── Variables ─────────────────────────────────────────── */
+:root {
+  --bg: #f5f2eb;
+  --surface: #ffffff;
+  --ink: #1a1713;
+  --ink-muted: #6b6560;
+  --accent: #c8401a;
+  --border: #ddd9d0;
+  --mono: "IBM Plex Mono", monospace;
+  --sans: "IBM Plex Sans", sans-serif;
+  --serif: "Playfair Display", serif;
+  --radius: 4px;
+  --max-w: 680px;
+}
+
+/* ── Reset ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base ──────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(200, 64, 26, 0.04) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(26, 23, 19, 0.03) 0%,
+      transparent 50%
+    );
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── Layout ────────────────────────────────────────────── */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ── Header ────────────────────────────────────────────── */
+header {
+  border-bottom: 2px solid var(--ink);
+  padding: 40px 0 24px;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+}
+
+.site-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.site-title {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+/* ── Search ────────────────────────────────────────────── */
+.search-wrapper {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.search-wrapper::before {
+  content: "⌕";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--ink-muted);
+  pointer-events: none;
+}
+
+#search-input {
+  width: 100%;
+  padding: 14px 16px 14px 42px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+#search-input::placeholder {
+  color: var(--ink-muted);
+  opacity: 0.6;
+}
+
+#search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(200, 64, 26, 0.1);
+}
+
+/* ── Feed ──────────────────────────────────────────────── */
+#feed {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Post ──────────────────────────────────────────────── */
+.post {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-bottom: 16px;
+  position: relative;
+  transition:
+    border-color 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+  animation: fadeSlideIn 0.35s ease both;
+}
+
+.post::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  border-radius: var(--radius) 0 0 var(--radius);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.post:hover {
+  border-color: var(--ink-muted);
+  transform: translateX(4px);
+  box-shadow: -4px 0 0 var(--accent);
+}
+
+.post:hover::before {
+  opacity: 1;
+}
+
+.post h3 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+
+.post p {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  line-height: 1.75;
+}
+
+/* post index number */
+.post-index {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  opacity: 0.7;
+  margin-bottom: 6px;
+}
+
+/* ── Empty state ───────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 64px 0;
+  color: var(--ink-muted);
+}
+
+.empty-state h1 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.empty-state p {
+  font-size: 0.875rem;
+}
+
+/* ── Loader ────────────────────────────────────────────── */
+#loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 32px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+}
+
+#loader::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ── Error ─────────────────────────────────────────────── */
+#error {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 24px;
+  background: #fff8f6;
+  border: 1.5px solid #e8bfb8;
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: #7a2e1a;
+  animation: fadeSlideIn 0.25s ease both;
+}
+
+#error::before {
+  content: "!";
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 22px;
+  text-align: center;
+}
+
+/* ── Animations ────────────────────────────────────────── */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Staggered post animation ──────────────────────────── */
+.post:nth-child(1) {
+  animation-delay: 0s;
+}
+.post:nth-child(2) {
+  animation-delay: 0.04s;
+}
+.post:nth-child(3) {
+  animation-delay: 0.08s;
+}
+.post:nth-child(4) {
+  animation-delay: 0.12s;
+}
+.post:nth-child(5) {
+  animation-delay: 0.16s;
+}
+.post:nth-child(6) {
+  animation-delay: 0.2s;
+}
+.post:nth-child(7) {
+  animation-delay: 0.24s;
+}
+.post:nth-child(8) {
+  animation-delay: 0.28s;
+}
+.post:nth-child(9) {
+  animation-delay: 0.32s;
+}
+.post:nth-child(10) {
+  animation-delay: 0.36s;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-muted);
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .post {
+    padding: 20px;
+  }
+
+  header {
+    padding: 28px 0 18px;
+  }
+}
