@@ -8,20 +8,31 @@ export default class CardPanel extends React.Component {
 
   render = () => {
     const currentCard = this.props.currentCard;
+    let cardColor;
+    if (currentCard) {
+      cardColor = {
+        background: !currentCard.isLearned
+          ? "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)"
+          : "linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%)",
+      };
+      if (currentCard.isFlipped) {
+        cardColor = {
+          background: !currentCard.isLearned
+            ? "linear-gradient(135deg, #dfdfdf 0%, #f8fafc 100%)"
+            : "linear-gradient(135deg, #93d8b3 0%, #a7f3d0 100%)",
+        };
+      }
+    } else {
+      cardColor = {
+        background: "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)",
+      };
+    }
     return (
       <>
         <div id="cards">
           <div id="card-container"></div>
           <p id="no-cards"></p>
-          <div
-            id="card"
-            onClick={this.props.onFlipCard}
-            style={{
-              background: !currentCard.isLearned
-                ? "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)"
-                : "linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%)",
-            }}
-          >
+          <div id="card" onClick={this.props.onFlipCard} style={cardColor}>
             {this.displayCardText(currentCard)}
           </div>
 

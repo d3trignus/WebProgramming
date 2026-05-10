@@ -93,13 +93,11 @@ export default class Flashcards extends React.Component {
     const name = deckName.trim();
 
     if (name.length === 0) {
-      alert("Deck name cannot be empty");
-      return;
+      return "Deck name cannot be empty";
     }
 
     if (this.state.decks.some((deck) => deck.name === name)) {
-      alert("Deck with this name already exists");
-      return;
+      return "Deck with this name already exists";
     }
 
     const newDeckId = Date.now();
@@ -111,6 +109,8 @@ export default class Flashcards extends React.Component {
       currentCardId: null,
       decks: [...this.state.decks, newDeck],
     });
+
+    return "";
   };
 
   handleRemoveDeck = () => {
@@ -187,8 +187,7 @@ export default class Flashcards extends React.Component {
     const backText = back.trim();
 
     if (frontText.length === 0 || backText.length === 0) {
-      alert("Card front and back cannot be empty");
-      return;
+      return "Card front and back cannot be empty";
     }
 
     const newCardId = Date.now();
@@ -210,6 +209,7 @@ export default class Flashcards extends React.Component {
           : deck,
       ),
     });
+    return "";
   };
 
   handlePrevCard = () => {
@@ -343,10 +343,9 @@ export default class Flashcards extends React.Component {
   handleEditCard = (cardId) => {
     const currentDeck = this.currentDeck;
     const card = currentDeck.cards.find((c) => c.id === cardId);
-    const newFront = prompt("Enter new front side text", card.front);
-    const newBack = prompt("Enter new back side text", card.back);
-
-    if (newFront === null || newBack === null) return;
+    const newFront =
+      prompt("Enter new front side text", card.front) || card.front;
+    const newBack = prompt("Enter new back side text", card.back) || card.back;
 
     const editedCard = {
       ...card,

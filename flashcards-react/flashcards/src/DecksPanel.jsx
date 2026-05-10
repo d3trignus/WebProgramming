@@ -13,8 +13,8 @@ export default class DecksPanel extends React.Component {
 
   handleAddDeck = () => {
     const name = this.state.newDeckName.trim();
-    this.props.onAddDeck(name);
-    this.setState({ error: "", newDeckName: "" });
+    const result = this.props.onAddDeck(name);
+    this.setState({ newDeckName: "", error: result });
   };
 
   handleChangeDeck = (e) => {
@@ -26,6 +26,7 @@ export default class DecksPanel extends React.Component {
     return (
       <div id="decks">
         <p>My decks</p>
+        <p className="on-add-error">{this.state.error}</p>
         <div className="decks-list">
           <select
             className="deck-select"
@@ -45,7 +46,6 @@ export default class DecksPanel extends React.Component {
             value={this.state.newDeckName}
             onChange={this.handleChangeNewDeckName}
           />
-          <div id="add-deck-error">{this.state.error}</div>
         </div>
         <button id="add-deck-button" onClick={this.handleAddDeck}>
           Add deck

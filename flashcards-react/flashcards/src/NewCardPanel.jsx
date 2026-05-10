@@ -7,6 +7,7 @@ export default class NewCardPanel extends React.Component {
     this.state = {
       newFrontText: "",
       newBackText: "",
+      error: "",
     };
   }
 
@@ -22,9 +23,9 @@ export default class NewCardPanel extends React.Component {
     const front = this.state.newFrontText.trim();
     const back = this.state.newBackText.trim();
 
-    this.props.onAddCard(front, back);
+    const result = this.props.onAddCard(front, back);
 
-    this.setState({ newFrontText: "", newBackText: "" });
+    this.setState({ newFrontText: "", newBackText: "", error: result });
   };
 
   render = () => {
@@ -46,6 +47,7 @@ export default class NewCardPanel extends React.Component {
             value={this.state.newBackText}
             onChange={this.handleNewBackText}
           />
+          <p className="on-add-error">{this.state.error}</p>
         </div>
         <button id="add-card-button" onClick={this.handleAddCard}>
           Add card
